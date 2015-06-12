@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="{% static 'style.css' %}" />
+    <title>{% block title %}{% endblock %}</title>
+    {% block head %}{% endblock %}
+</head>
+<body>
+<header>
+    <h1>JSGrid and Django Sample</h1>
+</header>
+{% block content %}{% endblock %}
+<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+{% block scripts %}{% endblock %}
+</body>
+</html>
