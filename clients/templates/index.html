@@ -39,11 +39,10 @@
                         $.ajax({
                             type: "GET",
                             url: "/clients/api",
-                            data: filter,
-                            dataType: "json"
+                            data: filter
                         }).done(function(result) {
                             d.resolve($.map(result, function(item) {
-                                return item.fields;
+                                return $.extend(item.fields, { id: item.pk });
                             }));
                         });
 
@@ -54,25 +53,22 @@
                         return $.ajax({
                             type: "POST",
                             url: "/clients/api",
-                            data: item,
-                            dataType: "json"
+                            data: item
                         });
                     },
 
                     updateItem: function(item) {
                         return $.ajax({
                             type: "PUT",
-                            url: "/clients/api/" + item.ID,
-                            data: item,
-                            dataType: "json"
+                            url: "/clients/api/" + item.id,
+                            data: item
                         });
                     },
 
                     deleteItem: function(item) {
                         return $.ajax({
                             type: "DELETE",
-                            url: "/clients/api/" + item.ID,
-                            dataType: "json"
+                            url: "/clients/api/" + item.id
                         });
                     }
                 },
