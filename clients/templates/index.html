@@ -34,18 +34,26 @@
 
                 controller: {
                     loadData: function(filter) {
-                        return $.ajax({
+                        var d = $.Deferred();
+
+                        $.ajax({
                             type: "GET",
-                            url: "/api/data",
+                            url: "/clients/api",
                             data: filter,
                             dataType: "json"
+                        }).done(function(result) {
+                            d.resolve($.map(result, function(item) {
+                                return item.fields;
+                            }));
                         });
+
+                        return d.promise();
                     },
 
                     insertItem: function(item) {
                         return $.ajax({
                             type: "POST",
-                            url: "/api/data",
+                            url: "/clients/api",
                             data: item,
                             dataType: "json"
                         });
@@ -54,7 +62,7 @@
                     updateItem: function(item) {
                         return $.ajax({
                             type: "PUT",
-                            url: "/api/data/" + item.ID,
+                            url: "/clients/api/" + item.ID,
                             data: item,
                             dataType: "json"
                         });
@@ -63,17 +71,17 @@
                     deleteItem: function(item) {
                         return $.ajax({
                             type: "DELETE",
-                            url: "/api/data/" + item.ID,
+                            url: "/clients/api/" + item.ID,
                             dataType: "json"
                         });
                     }
                 },
 
                 fields: [
-                    { name: "Name", type: "text", width: 150 },
-                    { name: "Age", type: "number", width: 50, filtering: false },
-                    { name: "Address", type: "text", width: 200 },
-                    { name: "Married", type: "checkbox", title: "Is Married", sorting: false },
+                    { name: "name", type: "text", width: 150 },
+                    { name: "age", type: "number", width: 50, filtering: false },
+                    { name: "address", type: "text", width: 200 },
+                    { name: "married", type: "checkbox", title: "Is Married", filtering: false, sorting: false },
                     { type: "control" }
                 ]
             });
