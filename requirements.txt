@@ -1,6 +1,6 @@
 certifi==2017.4.17
 chardet==3.0.4
-Django==1.8
+Django==1.11.29
 django-simple-rest==1.4.1
 idna==2.5
 mimeparse==0.1.3
